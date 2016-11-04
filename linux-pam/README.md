@@ -8,7 +8,7 @@ PAM est, sous forme d’API, le système de gestion d’identité de Linux. C’
 
 * Des __programmes__ dits _PAM aware_ qui vont faire appel à ces services.
 
-* Des __modules__ PAM (des librairies partagées, des `.so`) qui vont fournir ces services.
+* Des __modules__ PAM (des bibliothèques partagées, des `.so`) qui vont fournir ces services.
 
 L’intérêt est donc de délester les programmes _PAM aware_ de toute la couche de sécurité liée à la gestion d’utilisateurs. Ces programmes peuvent simplement demander à PAM d’authentifier un utilisateur via un service et attendre de recevoir une réponse booléenne.
 
@@ -171,7 +171,7 @@ Les modules PAM peuvent remplir 1 à 4 des tâches présentés ci-dessous. Bien 
 
 #### auth
 
-Vérification de l’identité. En général, il s’agit de vérifier le couple login/password basé sur `/etc/passwd` et `/etc/shadow`. On peut très bien envisager d’avoir une base de données sqlite au lieu de ces deux fichiers, d’avoir un système distant centralisé type LDAP, d’avoir une authentification forte à deux facteurs, etc.
+Vérification de l’identité. En général, il s’agit de vérifier le couple login/password basé sur `/etc/passwd` et `/etc/shadow`. On peut très bien envisager avoir une base de données sqlite au lieu de ces deux fichiers, d’avoir un système distant centralisé type LDAP, d’avoir une authentification forte à deux facteurs, etc.
 
 #### account
 
@@ -275,7 +275,7 @@ Nom du service à invoquer. Ce service doit exister dans `/etc/pam.d/`.
 
 * `user`
 
-Nom d’utilisateur à authentifier s’il est connu. On peut aussi passer NULL et laisser PAM déterminer lui-même le nom d’utilisateur.
+Nom d’utilisateur à authentifier s’il est connu. On peut aussi passer `NULL` et laisser PAM déterminer lui-même le nom d’utilisateur.
 
 * `pam_conversation`
 
