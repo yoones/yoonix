@@ -13,7 +13,7 @@ Vous trouverez dans ce dépôt plusieurs sous-dossiers. Chacun sera une présent
 Liste des sujets abordés :
 ---
 
-- [Linux-PAM - Pluggable Authentication Modules for Linux](https://github.com/yoones/yoonix/linux-pam/)
+- [Linux-PAM - Pluggable Authentication Modules for Linux](https://github.com/yoones/yoonix/tree/master/linux-pam)
 
 _D'autres sont en cours de préparation._
 
