@@ -21,7 +21,7 @@ _D'autres sont en cours de préparation._
 
 Le contenu de ce dépôt à été initialement créé par [Younes SERRAJ](https://github.com/yoones).
 
-Les contributions sont grandement appréciées via l'issues tracker de github ou via une pull request.
+Les contributions sont grandement appréciées via l'[issues tracker](https://github.com/yoones/yoonix/issues) de github ou via une pull request.
 
 ## Licence [![Licence Creative Commons](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
