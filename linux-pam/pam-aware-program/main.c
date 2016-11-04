@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <security/pam_appl.h>
 #include <security/pam_misc.h>
 #include <security/pam_modules.h>
