@@ -207,7 +207,9 @@ Le succès ou l’échec de cette étape n’aura aucune incidence sur la suite 
 
 ### [3. Nom du module](#)
 
-C'est un nom de fichier `.so`, par exemple `pam_unix.so`. Par exemple, sur ma machine les modules sont recherchés dans le dossier `/lib/x86_64-linux-gnu/security/`, mais il est possible d’indiquer un chemin absolu plutôt que juste le nom du module à charger, par exemple : `/my/custom/directory/module.so`.
+C'est un nom de fichier `.so`, par exemple `pam_unix.so`. Sur ma machine les modules sont recherchés dans le dossier `/lib/x86_64-linux-gnu/security/`, donc c'est le fichier `/lib/x86_64-linux-gnu/security/pam_unix.so` qui sera chargé.
+
+Il est aussi possible d’indiquer un chemin absolu plutôt que juste le nom du module à charger, par exemple : `/my/custom/directory/module.so`.
 
 ### [4. Éventuels arguments à passer au module](#)
 
