@@ -425,7 +425,7 @@ TODO
 
 Ce document a été rédigé initialement par [Younes SERRAJ](https://github.com/yoones).
 
-Contributions appréciées via l'[issues tracker](https://github.com/yoones/yoonix/issues) de github ou via une pull request :issue:.
+Contributions appréciées via l'[issues tracker](https://github.com/yoones/yoonix/issues) de github ou via une pull request.
 
 ## [Licence](#) [![Licence Creative Commons](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
