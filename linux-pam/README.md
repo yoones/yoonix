@@ -357,7 +357,7 @@ int pam_get_item(
 );
 ```
 
-Cette fonction permet de manipuler des informations PAM comme, par exemple, le nom d’utilisateur ou encore le nom du service invoqué. Ce sont des informations stockées dans le handle (la structure obscure dont on a parlé plus tôt). Les données renvoyées par `pam_get_item()` ne doivent pas être libérées avec `free()`. Elle seront automatiquement libérées lors de l’appel à `pam_end()`.
+Cette fonction permet de manipuler des informations PAM comme, par exemple, le nom d’utilisateur ou encore le nom du service invoqué. Ce sont des informations stockées dans le handle (la structure obscure dont on a parlé plus tôt). Les données renvoyées par `pam_get_item()` ne doivent pas être libérées avec `free()` ni modifiées (d'où le modifier `const`). Elle seront automatiquement libérées lors de l’appel à `pam_end()`.
 
 Paramètres :
 
