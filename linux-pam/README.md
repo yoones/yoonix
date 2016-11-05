@@ -337,7 +337,7 @@ int pam_acct_mgmt(
 );
 ```
 
-Si l’utilisateur est correctement identifié, il faut maintenant s’assurer, grâce à cette fonction, qu’il a bien le droit de se connecter actuellement.
+Si l’utilisateur est correctement authentifié, il faut maintenant s’assurer, grâce à cette fonction, qu’il a bien le droit de se connecter actuellement.
 
 Paramètres :
 
@@ -359,7 +359,7 @@ int pam_get_item(
 );
 ```
 
-Cette fonction permet de manipuler des informations PAM comme, par exemple, le nom d’utilisateur ou encore le nom du service invoqué. Ce sont des informations stockées dans le handle (la structure obscure dont on a parlé plus tôt). Les données renvoyées par `pam_get_item()` ne doivent pas être libérées avec `free()` ni modifiées (d'où le modifier `const`). Elle seront automatiquement libérées lors de l’appel à `pam_end()`.
+Cette fonction permet de récupérer des informations PAM comme, par exemple, le nom d’utilisateur ou encore le nom du service invoqué. Ce sont des informations stockées dans le handle (la structure obscure dont on a parlé plus tôt). Les données renvoyées par `pam_get_item()` ne doivent pas être libérées avec `free()` ni modifiées (d'où le modifier `const`). Elle seront automatiquement libérées lors de l’appel à `pam_end()`.
 
 Paramètres :
 
@@ -367,7 +367,7 @@ Paramètres :
 
 * `item_type`
 
-Information à manipuler (voir la liste complète dans le man).
+Information à récupére (voir la liste complète dans le man).
 
 Exemples : `PAM_USER, PAM_SERVICE`, `PAM_CONV`.
 
@@ -385,7 +385,7 @@ C’est une fonction proposée par `libpam_misc` qui s’occupe pour nous de con
 
 ### [5. Exemple](#)
 
-Voici un exemple de programme qui va récupérer l’identité de l’utilisateur (login et password), vérifier qu’ils sont valides, et vérifier que ce compte à bien le droit de se connecter. D’autres actions seraient possibles comme par exemple le fait d’ouvrir/fermer une session avec les fonctions pam_open_session() et pam_close_session(), mais ce ne sera pas couvert dans le code ci-dessous par soucis de simplicité :
+Voici un exemple de programme qui va récupérer l’identité de l’utilisateur (login et password), vérifier qu’elle est valide, et vérifier que ce compte à bien le droit de se connecter. D’autres actions seraient possibles comme par exemple le fait d’ouvrir/fermer une session avec les fonctions `pam_open_session()` et `pam_close_session()`, mais ce ne sera pas couvert dans le code ci-dessous par soucis de simplicité :
 
 [Voir le code source sur github](https://github.com/yoones/yoonix/tree/master/linux-pam/pam-aware-program)
 
