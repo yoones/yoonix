@@ -393,7 +393,87 @@ Voici un exemple de programme qui va récupérer l’identité de l’utilisateu
 
 ### [Service auth](#)
 
-TODO
+Avant tout, il faut :
+
+1. Définir la macro `PAM_SM_AUTH`
+
+2. __Ensuite__ inclure `<security/pam_modules.h>`
+
+3. Enfin, implémenter les deux fonctions présentées ci-dessous.
+
+```c
+#define PAM_SM_AUTH
+#include <security/pam_modules.h>
+```
+
+---
+
+#### pam_sm_authenticate()
+
+```c
+PAM_EXTERN int pam_sm_authenticate(
+  pam_handle_t *pamh,
+  int flags,
+  int argc,
+  const char **argv
+);
+```
+
+Quand une application appelle `pam_authenticate()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_authenticate()` (fonction exposée par le module) qui sera appelée.
+
+Aucune surprise, cette fonction sert à implémenter le système de gestion d'identité (voir [pam_authenticate()](#pam_authenticate)).
+
+Paramètres :
+
+* `pamh`
+
+Contexte PAM (handle).
+
+* `flags`
+
+Champs de bits servant à activer les modes `PAM_SILENT` et `PAM_DISALLOW_NULL_AUTHTOK`.
+
+* `argc`
+
+Nombre d'arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
+
+* `argv`
+
+Arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
+Notez qu'ici, contrairement aux argc/argv passées à la fonction `main()`, le premier élément d'argv n'est pas le nom du module mais directement un paramètre (par exemple `debug=1`).
+
+---
+
+#### pam_sm_setcred()
+
+```c
+PAM_EXTERN int pam_sm_setcred(
+  pam_handle_t *pamh,
+  int flags,
+  int argc,
+  const char **argv
+);
+```
+
+Quand une application appelle `pam_setcred()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_setcred()` (fonction exposée par le module) qui sera appelée.
+
+Certains modules ont besoin d'effectuer des actions supplémentaires quand l'identité de l'utilisateur est vérifiée (l'associer à des groupes spéciaux en plus de ce qui est définit dans `/etc/group`, définir un ticket Kerberos, limiter l'accès à certaines ressources, etc.). C'est dans cette fonction que l'on peut procéder à ces opérations.
+
+Paramètres :
+
+* `pamh`
+
+* `flags`
+
+Champs de bits servant à activer le mode `PAM_SILENT`.
+
+Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : `PAM_ESTABLISH_CRED`, `PAM_DELETE_CRED`, `PAM_REINITIALIZE_CRED` ou `PAM_REFRESH_CRED`. Si aucun ou plusieurs de ces 4 modes est activé, la fonction doit renvoyer un code d'erreur (voir le man).
+
+* `argc`
+
+* `argv`
+
+---
 
 ### [Service account](#)
 
@@ -420,6 +500,8 @@ TODO
 * http://artisan.karma-lab.net/petite-introduction-a-pam
 
 * https://www.freebsd.org/doc/en_US.ISO8859-1/articles/pam/pam-essentials.html
+
+* https://www.netbsd.org/docs/guide/en/chap-pam.html
 
 ## [Auteur](#)
 
