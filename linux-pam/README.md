@@ -457,7 +457,7 @@ PAM_EXTERN int pam_sm_setcred(
 
 Quand une application appelle `pam_setcred()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_setcred()` (fonction exposée par le module) qui sera appelée.
 
-Certains modules ont besoin d'effectuer des actions supplémentaires quand l'identité de l'utilisateur est vérifiée (l'associer à des groupes spéciaux en plus de ce qui est définit dans `/etc/group`, définir un ticket Kerberos, limiter l'accès à certaines ressources, etc.). C'est dans cette fonction que l'on peut procéder à ces opérations.
+Certains modules ont besoin d'effectuer des actions supplémentaires quand l'identité de l'utilisateur est vérifiée (l'associer à des groupes spéciaux en plus de ceux définis dans `/etc/group`, définir un ticket Kerberos, limiter l'accès à certaines ressources, etc.). C'est dans cette fonction que l'on peut procéder à ces opérations.
 
 Paramètres :
 
