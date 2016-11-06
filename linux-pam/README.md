@@ -165,7 +165,7 @@ session [success=ok ignore=ignore module_unknown=ignore default=bad] pam_selinux
 
 Chaque ligne du fichier correspond à une règle, et chaque colonne d’une règle donne une information différente :
 
-### [1. Type de tâche à invoquer (auth, account, password, session)](#)
+### [1. Type de tâche à invoquer (auth, account, password, session)](#1-type-de-tâche-à-invoquer-auth-account-password-session)
 
 Les modules PAM peuvent remplir 1 à 4 des tâches présentés ci-dessous. Bien qu’un module puisse endosser toutes ces casquettes, il est préférable de créer un module par type de tâche afin de respecter l’esprit unix (chaque programme fait une seule chose et le fait bien).
 
@@ -185,7 +185,7 @@ Mise à jour du password et instauration de règles concernant les password. C�
 
 Actions à effectuer en début et fin de session. On peut ici définir des variables d’environnements, compter le nombre de sessions ouvertes simultanément, monter/démonter des partitions chiffrées, etc.
 
-### [2. Rôle de la règle dans la chaîne de validation](#)
+### [2. Rôle de la règle dans la chaîne de validation](#2-rôle-de-la-règle-dans-la-chaîne-de-validation)
 
 #### requisite
 
@@ -205,13 +205,13 @@ Le succès ou l’échec de cette étape n’aura aucune incidence sur la suite 
 
 > A noter que le contenu de cette deuxième colonne (requisite, required, sufficient, optional) liste les options que l’on trouve généralement dans un fichier de configuration. Ce sont en réalité des alias dont on peut se passer si l’on veut avoir un contrôle plus fin. On peut donc trouver des choses comme `[success=1 default=ignore]` ou encore `[success=ok ignore=ignore module_unknown=ignore default=bad]`. Pour avoir plus d’informations sur chacun de ces paramètres, je vous invite à lire le code source de PAM.
 
-### [3. Nom du module](#)
+### [3. Nom du module](#3-nom-du-module)
 
 C'est un nom de fichier `.so`, par exemple `pam_unix.so`. Sur ma machine les modules sont recherchés dans le dossier `/lib/x86_64-linux-gnu/security/`, donc c'est le fichier `/lib/x86_64-linux-gnu/security/pam_unix.so` qui sera chargé.
 
 Il est aussi possible d’indiquer un chemin absolu plutôt que juste le nom du module à charger, par exemple : `/my/custom/directory/module.so`.
 
-### [4. Éventuels arguments à passer au module](#)
+### [4. Éventuels arguments à passer au module](#4-Éventuels-arguments-à-passer-au-module)
 
 A la façon d'argc/argv, on peut passer des paramètres au module (exemple : `debug=1`).
 
@@ -219,7 +219,7 @@ A la façon d'argc/argv, on peut passer des paramètres au module (exemple : `de
 
 Rendre une application PAM aware veut dire qu’on lui fait utiliser l’API PAM pour gérer l’authentification des utilisateurs. Nous allons écrire une application qui va faire appel au service login.
 
-### [1. Dépendances](#)
+### [1. Dépendances](#dépendances)
 
 Avant tout, il faut installer le paquet `libpam0g-dev`. C’est le nom du paquet sur debian, je vous laisse trouver l’équivalent si vous êtes sur une autre distribution.
 
@@ -227,7 +227,7 @@ Avant tout, il faut installer le paquet `libpam0g-dev`. C’est le nom du paquet
 $ sudo apt-get install libpam0g-dev
 ```
 
-### [2. Linker options](#)
+### [2. Linker options](#2-linker-options)
 
 Pour compiler un programme qui utilise la libpam, il faut ajouter à la ligne de compilation les options suivantes : `-lpam -lpam_misc`.
 
@@ -235,7 +235,7 @@ Pour compiler un programme qui utilise la libpam, il faut ajouter à la ligne de
 $ gcc *.c -lpam -lpam_misc
 ```
 
-### [3. Headers](#)
+### [3. Headers](#3-headers)
 
 Les 3 headers qu’on retrouvera au début de nos fichiers .c seront :
 
@@ -245,7 +245,7 @@ Les 3 headers qu’on retrouvera au début de nos fichiers .c seront :
 #include <security/pam_misc.h>
 ```
 
-### [4. Fonctions](#)
+### [4. Fonctions](#4-fonctions)
 
 Si vous souhaitez avoir une liste complète des fonctions disponibles :
 
@@ -383,7 +383,7 @@ C’est une fonction proposée par `libpam_misc` qui s’occupe pour nous de con
 
 ---
 
-### [5. Exemple](#)
+### [5. Exemple](#5-exemple)
 
 Voici un exemple de programme qui va récupérer l’identité de l’utilisateur (login et password), vérifier qu’elle est valide, et vérifier que ce compte à bien le droit de se connecter. D’autres actions seraient possibles comme par exemple le fait d’ouvrir/fermer une session avec les fonctions `pam_open_session()` et `pam_close_session()`, mais ce ne sera pas couvert dans le code ci-dessous par soucis de simplicité :
 
@@ -391,7 +391,7 @@ Voici un exemple de programme qui va récupérer l’identité de l’utilisateu
 
 ## Coder un module PAM
 
-### [Service auth](#)
+### [Service auth](#service-auth)
 
 Avant tout, il faut :
 
@@ -475,23 +475,23 @@ Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : 
 
 ---
 
-### [Service account](#)
+### [Service account](#service-account)
 
 TODO
 
-### [Service password](#)
+### [Service password](#service-password)
 
 TODO
 
-### [Service session](#)
+### [Service session](#service-session)
 
 TODO
 
-## [Exercice](#)
+## [Exercice](#exercice)
 
 TODO
 
-## [Ressources](#)
+## [Ressources](#ressources)
 
 * http://wpollock.com/AUnix2/PAM-Help.htm
 
@@ -503,12 +503,12 @@ TODO
 
 * https://www.netbsd.org/docs/guide/en/chap-pam.html
 
-## [Auteur](#)
+## [Auteur](#auteur)
 
 Ce document a été rédigé initialement par [Younes SERRAJ](https://github.com/yoones).
 
 Contributions appréciées via l'[issues tracker](https://github.com/yoones/yoonix/issues) de github ou via une pull request.
 
-## [Licence](#) [![Licence Creative Commons](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
+## [Licence](#licence-) [![Licence Creative Commons](https://i.creativecommons.org/l/by/4.0/80x15.png)](http://creativecommons.org/licenses/by/4.0/)
 
 Cette œuvre est mise à disposition selon les termes de la [Licence Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/)
