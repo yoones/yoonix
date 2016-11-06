@@ -467,7 +467,7 @@ Paramètres :
 
 Champs de bits servant à activer le mode `PAM_SILENT`.
 
-Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : `PAM_ESTABLISH_CRED`, `PAM_DELETE_CRED`, `PAM_REINITIALIZE_CRED` ou `PAM_REFRESH_CRED`. Si aucun ou plusieurs de ces 4 modes est activé, la fonction doit renvoyer un code d'erreur (voir le man).
+Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : `PAM_ESTABLISH_CRED`, `PAM_DELETE_CRED`, `PAM_REINITIALIZE_CRED` ou `PAM_REFRESH_CRED`. Si aucun ou plusieurs de ces 4 modes sont activés, la fonction doit renvoyer un code d'erreur (voir le man).
 
 * `argc`
 
