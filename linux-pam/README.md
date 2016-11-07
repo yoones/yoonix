@@ -393,7 +393,13 @@ Voici un exemple de programme qui va récupérer l’identité de l’utilisateu
 
 ### [Service auth](#service-auth)
 
-Avant tout, il faut :
+Les deux fonctions à implémenter sont les suivantes :
+
+* `pam_sm_authenticate()`
+
+* `pam_sm_setcred()`
+
+Avant cela, il faut :
 
 1. Définir la macro `PAM_SM_AUTH`
 
@@ -419,7 +425,7 @@ PAM_EXTERN int pam_sm_authenticate(
 );
 ```
 
-Quand une application appelle `pam_authenticate()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_authenticate()` (fonction exposée par le module) qui sera appelée.
+> Quand une application appelle `pam_authenticate()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_authenticate()` (fonction exposée par le module) qui sera appelée.
 
 Aucune surprise, cette fonction sert à implémenter le système de gestion d'identité (voir [pam_authenticate()](#pam_authenticate)).
 
@@ -455,9 +461,19 @@ PAM_EXTERN int pam_sm_setcred(
 );
 ```
 
-Quand une application appelle `pam_setcred()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_setcred()` (fonction exposée par le module) qui sera appelée.
+> Quand une application appelle `pam_setcred()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_setcred()` (fonction exposée par le module) qui sera appelée.
 
-Certains modules ont besoin d'effectuer des actions supplémentaires quand l'identité de l'utilisateur est vérifiée (l'associer à des groupes spéciaux en plus de ceux définis dans `/etc/group`, définir un ticket Kerberos, limiter l'accès à certaines ressources, etc.). C'est dans cette fonction que l'on peut procéder à ces opérations.
+Quand l'identité de l'utilisateur est vérifiée, certains modules ont besoin d'effectuer des actions supplémentaires liées aux _credentials_ comme :
+
+* associer l'utilisateur à des groupes en plus de ceux auxquels il appartient déjà dans `/etc/group`,
+
+* définir un ticket Kerberos,
+
+* limiter l'accès à certaines ressources,
+
+* etc.
+
+C'est dans cette fonction que l'on peut procéder à ces opérations.
 
 Paramètres :
 
