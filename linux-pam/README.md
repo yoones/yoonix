@@ -53,6 +53,8 @@ Sommaire
 	- [5. Exemple](#5-exemple)
 - [Coder un module PAM](#coder-un-module-pam)
 	- [Service auth](#service-auth)
+		- [pam_sm_authenticate()](#pam_sm_authenticate)
+		- [pam_sm_setcred()](#pam_sm_setcred)
 	- [Service account](#service-account)
 	- [Service password](#service-password)
 	- [Service session](#service-session)
@@ -425,9 +427,9 @@ PAM_EXTERN int pam_sm_authenticate(
 );
 ```
 
-> Quand une application appelle `pam_authenticate()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_authenticate()` (fonction exposée par le module) qui sera appelée.
+> Quand une application appelle [`pam_authenticate()`](#pam_authenticate) (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_authenticate()` (fonction exposée par le module) qui sera appelée.
 
-Aucune surprise, cette fonction sert à implémenter le système de gestion d'identité (voir [pam_authenticate()](#pam_authenticate)).
+Aucune surprise ici, cette fonction sert à implémenter la vérification d'identité.
 
 Paramètres :
 
@@ -461,7 +463,7 @@ PAM_EXTERN int pam_sm_setcred(
 );
 ```
 
-> Quand une application appelle `pam_setcred()` (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_setcred()` (fonction exposée par le module) qui sera appelée.
+> Quand une application appelle [`pam_setcred()`](#pam_setcred) (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_setcred()` (fonction exposée par le module) qui sera appelée.
 
 Quand l'identité de l'utilisateur est vérifiée, certains modules ont besoin d'effectuer des actions supplémentaires liées aux _credentials_ comme :
 
