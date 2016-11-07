@@ -449,7 +449,7 @@ Paramètres :
 
   Arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
 
-  Notez qu'ici, contrairement aux argc/argv passées à la fonction `main()`, le premier élément d'argv n'est pas le nom du module mais directement un paramètre (par exemple `debug=1`).
+Notez qu'ici, contrairement aux argc/argv passées à la fonction `main()`, le premier élément d'argv n'est pas le nom du module mais directement un paramètre (par exemple `debug=1`).
 
 ---
 
