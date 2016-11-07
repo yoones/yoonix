@@ -275,19 +275,19 @@ Paramètres :
 
 * `service_name`
 
-Nom du service à invoquer. Ce service doit exister dans `/etc/pam.d/`.
+  Nom du service à invoquer. Ce service doit exister dans `/etc/pam.d/`.
 
 * `user`
 
-Nom d’utilisateur à authentifier s’il est connu. On peut aussi passer `NULL` et laisser PAM déterminer lui-même le nom d’utilisateur.
+  Nom d’utilisateur à authentifier s’il est connu. On peut aussi passer `NULL` et laisser PAM déterminer lui-même le nom d’utilisateur.
 
 * `pam_conversation`
 
-Structure qui précise la fonction à appeler pour communiquer avec l’utilisateur. Grâce à ce mécanisme, on peut aussi bien dialoguer sur un terminal que via une interface graphique.
+  Structure qui précise la fonction à appeler pour communiquer avec l’utilisateur. Grâce à ce mécanisme, on peut aussi bien dialoguer sur un terminal que via une interface graphique.
 
 * `pamh`
 
-Contexte (handle) créé par PAM, c’est une sorte d’identifiant de transaction. Cette structure est volontairement opaque. Ni les développeurs d’applications ni les développeurs de modules ne sont censés savoir ce qu’il y a dedans.
+  Contexte (handle) créé par PAM, c’est une sorte d’identifiant de transaction. Cette structure est volontairement opaque. Ni les développeurs d’applications ni les développeurs de modules ne sont censés savoir ce qu’il y a dedans.
 
 ---
 
@@ -305,7 +305,7 @@ Paramètres :
 * `pamh`
 * `pam_status`
 
-Ce doit être la valeur de retour récupérée lors du dernier appel à une fonction PAM avant d’appeler `pam_end()`. Cela peut permettre aux modules de procéder à des opérations de dernière minute.
+  Ce doit être la valeur de retour récupérée lors du dernier appel à une fonction PAM avant d’appeler `pam_end()`. Cela peut permettre aux modules de procéder à des opérations de dernière minute.
 
 ---
 
@@ -326,7 +326,7 @@ Paramètres :
 
 * `flags`
 
-Permet d’activer les flags `PAM_SILENT` et `PAM_DISALLOW_NULL_AUTHOK`.
+  Permet d’activer les flags `PAM_SILENT` et `PAM_DISALLOW_NULL_AUTHOK`.
 
 ---
 
@@ -347,7 +347,7 @@ Paramètres :
 
 * `flags`
 
-Identique à `pam_authenticate()`.
+  Identique à `pam_authenticate()`.
 
 ---
 
@@ -369,13 +369,13 @@ Paramètres :
 
 * `item_type`
 
-Information à récupére (voir la liste complète dans le man).
+  Information à récupére (voir la liste complète dans le man).
 
-Exemples : `PAM_USER, PAM_SERVICE`, `PAM_CONV`.
+  Exemples : `PAM_USER, PAM_SERVICE`, `PAM_CONV`.
 
 * `item`
 
-Adresse du pointeur qui recevra l’adresse mémoire où est stockée la valeur actuelle.
+  Adresse du pointeur qui recevra l’adresse mémoire où est stockée la valeur actuelle.
 
 ---
 
@@ -435,20 +435,21 @@ Paramètres :
 
 * `pamh`
 
-Contexte PAM (handle).
+  Contexte PAM (handle).
 
 * `flags`
 
-Champs de bits servant à activer les modes `PAM_SILENT` et `PAM_DISALLOW_NULL_AUTHTOK`.
+  Champs de bits servant à activer les modes `PAM_SILENT` et `PAM_DISALLOW_NULL_AUTHTOK`.
 
 * `argc`
 
-Nombre d'arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
+  Nombre d'arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
 
 * `argv`
 
-Arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
-Notez qu'ici, contrairement aux argc/argv passées à la fonction `main()`, le premier élément d'argv n'est pas le nom du module mais directement un paramètre (par exemple `debug=1`).
+  Arguments passés au module ([4ème colonne dans le fichier service](#4-Éventuels-arguments-à-passer-au-module)).
+
+  Notez qu'ici, contrairement aux argc/argv passées à la fonction `main()`, le premier élément d'argv n'est pas le nom du module mais directement un paramètre (par exemple `debug=1`).
 
 ---
 
@@ -483,9 +484,9 @@ Paramètres :
 
 * `flags`
 
-Champs de bits servant à activer le mode `PAM_SILENT`.
+  Champs de bits servant à activer le mode `PAM_SILENT`.
 
-Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : `PAM_ESTABLISH_CRED`, `PAM_DELETE_CRED`, `PAM_REINITIALIZE_CRED` ou `PAM_REFRESH_CRED`. Si aucun ou plusieurs de ces 4 modes sont activés, la fonction doit renvoyer un code d'erreur (voir le man).
+  Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : `PAM_ESTABLISH_CRED`, `PAM_DELETE_CRED`, `PAM_REINITIALIZE_CRED` ou `PAM_REFRESH_CRED`. Si aucun ou plusieurs de ces 4 modes sont activés, la fonction doit renvoyer un code d'erreur (voir le man).
 
 * `argc`
 
