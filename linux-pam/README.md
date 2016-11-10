@@ -522,6 +522,8 @@ TODO
 
 * https://www.netbsd.org/docs/guide/en/chap-pam.html
 
+* Concernant l'utilisation de `syslog` : http://www.linux-pam.org/Linux-PAM-html/mwg-see-programming-syslog.html
+
 ## [Auteur](#auteur)
 
 Ce document a été rédigé initialement par [Younes SERRAJ](https://github.com/yoones).
