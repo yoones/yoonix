@@ -387,7 +387,7 @@ C'est une fonction proposée par `libpam_misc` qui s'occupe pour nous de convers
 
 ### [5. Exemple](#5-exemple)
 
-Voici un exemple de programme qui va récupérer l'identité de l'utilisateur (login et password), vérifier qu'elle est valide, et vérifier que ce compte à bien le droit de se connecter. D'autres actions seraient possibles comme par exemple le fait d'ouvrir/fermer une session avec les fonctions `pam_open_session()` et `pam_close_session()`, mais ce ne sera pas couvert dans le code ci-dessous par soucis de simplicité :
+Voici un exemple de programme qui va récupérer l'identité de l'utilisateur (login et password), vérifier qu'elle est valide, et vérifier que ce compte à bien le droit de se connecter. D'autres actions seraient possibles comme par exemple le fait d'appeler `pam_setcred()` pour la gestion des droits ou encore d'ouvrir/fermer une session avec les fonctions `pam_open_session()` et `pam_close_session()`, mais ce ne sera pas couvert dans le code ci-dessous par soucis de simplicité :
 
 [Voir le code source sur github](https://github.com/yoones/yoonix/tree/master/linux-pam/pam-aware-program)
 
