@@ -126,7 +126,7 @@ session    required     pam_loginuid.so
 session [success=ok ignore=ignore module_unknown=ignore default=bad] pam_selinux.so open
 ```
 
-C'est la succession d'instructions qu'a prévu l'administrateur système pour les applications invoquant le service login.
+C'est la succession de règles qu'a prévu l'administrateur système pour les applications invoquant le service login.
 
 Certaines lignes commencent par `@include`. Comme on peut s'en douter, il s'agit d'insérer à cette endroit le contenu d'un autre fichier (à la façon d'un préprocesseur C avec les directives `#include`). Si je reprends ce fichier et fait le pré-processing à l'aide du script `compile_pam_file.sh` (outils disponible sur github), j'obtiens le résultat suivant :
 
