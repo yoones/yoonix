@@ -494,6 +494,12 @@ Paramètres :
 
 ---
 
+> Note concernant l'architecture de modules PAM :
+> 
+> Certaines modules PAM nécessitent les privilèges root pour pouvoir effectuer certaines actions comme associer un utilisateur à des groupes supplémentaires (`setgroups()`), lire le fichier `/etc/shadow` pour en extraire des hash de password, etc. C'est pour cela que certains programmes _PAM aware_ ne peuvent être lancées qu'avec `sudo` ou par un programme comme `init` qui a des privilèges suffisants, car le module doit hériter de ces privilèges pour fonctionner.
+> 
+> Toutefois, des modules peuvent avoir besoin d'effectuer une opération qui nécessite les droits root sans que le programme _PAM aware_ qui les appelle n'ai ces privilèges. C'est le cas de `pam_unix.so` qui a besoin d'accéder à `/etc/shadow` pour vérifier le password que l'utilisateur lui donne. Pour cela, ce module a fait un choix très simple : fournir un programme setuid qui fait la vérification du password à la place du module. Le module peut donc indirectement accéder à /etc/shadow sans privilèges particuliers.
+
 ### [Service account](#service-account)
 
 TODO
