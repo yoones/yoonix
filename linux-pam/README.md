@@ -58,6 +58,7 @@ Sommaire
 	- [Service account](#service-account)
 	- [Service password](#service-password)
 	- [Service session](#service-session)
+	- [Exemple de module](#exemple-de-module)
 - [Exercice](#exercice)
 - [Ressources](#ressources)
 - [Auteur](#auteur)
@@ -519,6 +520,12 @@ TODO
 ### [Service session](#service-session)
 
 TODO
+
+### [Exemple de module](#exemple-de-module)
+
+Voici un exemple de module qui implémente la partie __auth__. Vous trouverez avec ce module un program de test et des scripts qui vous aideront à tester le tout.
+
+[Voir le code source sur github](https://github.com/yoones/yoonix/tree/master/linux-pam/pam-module)
 
 ## [Exercice](#exercice)
 
