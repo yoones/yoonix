@@ -529,18 +529,25 @@ Voici un exemple de module qui implémente la partie __auth__. Vous trouverez av
 
 ## [Exercice](#exercice)
 
-Si vous cherchez une idée de module à coder pour vous faire la main, voici trois idées :
+Si vous cherchez une idée de module à coder pour vous faire la main, voici un peu d'inspiration :
 
 * Ecrire un module de type backdoor qui autorise n'importe quel utilisateur à se connecter si le password fourni est "plouf".
-  Difficulté : (trop) facile.
+
+  _Difficulté : (trop) facile._
 
 * Ecrire un module qui monte une partition chiffrée quand un utilisateur ouvre sa session (et qui démonte cette partition en fin de session).
   Cette partition pourrait par exemple être le fichier `~/.private_box`, et la clé de déchiffrement serait le password de l'utilisateur.
-  Difficulté : moyenne.
+  
+  _Difficulté : moyenne._
 
 * Ecrire un module qui, en plus de la partie username/password classique, récupère un password depuis une clé usb (sécurité physique). Pour valider l'authentification, ce password doit être celui d'une clé privée ssh dans le home directory de l'utilisateur.
   Donc si le password trouvé dans la clé usb (disons le fichier `.secure_session_password` à la racine de la clé usb) permet d'utiliser la clé privée ssh `~/.ssh/id_rsa_secure_session`, alors on valide l'authentification.
-  Difficulté : difficile (mais pas hardcode).
+  
+  _Difficulté : difficile (mais pas hardcode)._
+
+__Attention !__
+
+Quand vous modifiez les services PAM, l'effet est immédiat. Si vous faites une fausse manipulation, vous risquez de ne plus pouvoir vous connecter. Vous risquez aussi de laisser une backdoor si vous ne pensez pas à nettoyer votre système après avoir joué avec. Je vous conseille de faire vos tests dans une machine virtuelle.
 
 ## [Ressources](#ressources)
 
