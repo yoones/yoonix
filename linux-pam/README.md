@@ -511,15 +511,183 @@ Toutefois, des modules peuvent avoir besoin d'effectuer une opération qui néce
 
 ### [Service account](#service-account)
 
-TODO
+Voici la fonction à implémenter :
+
+* `pam_sm_acct_mgmt()`
+
+Avant cela, il faut :
+
+1. Définir la macro `PAM_SM_ACCOUNT`
+
+2. __Ensuite__ inclure `<security/pam_modules.h>`
+
+3. Enfin, implémenter la fonction présentée ci-dessous.
+
+```c
+#define PAM_SM_ACCOUNT
+#include <security/pam_modules.h>
+```
+
+---
+
+#### pam_sm_acct_mgmt()
+
+```c
+PAM_EXTERN int pam_sm_acct_mgmt(
+  pam_handle_t *pamh,
+  int flags,
+  int argc,
+  const char **argv
+);
+```
+
+> Quand une application appelle [`pam_acct_mgmt()`](#pam_acct_mgmt) (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_acct_mgmt()` (fonction exposée par le module) qui sera appelée.
+
+Cette fonction permet de savoir si l'utilisateur, qui s'est précédemment correctement authentifié, a bien le droit de se connecter actuellement. On pourrait éventuellement interdire l'accès à un compte qui a expiré, dont le password doit être mis à jour, s'il n'est pas censé se connecter ce jour de la semaine, etc.
+
+---
 
 ### [Service password](#service-password)
 
-TODO
+Voici la fonction à implémenter :
+
+* `pam_sm_chauthtok()`
+
+Avant cela, il faut :
+
+1. Définir la macro `PAM_SM_PASSWORD`
+
+2. __Ensuite__ inclure `<security/pam_modules.h>`
+
+3. Enfin, implémenter la fonction présentée ci-dessous.
+
+```c
+#define PAM_SM_PASSWORD
+#include <security/pam_modules.h>
+```
+
+---
+
+#### pam_sm_chauthtok()
+
+```c
+PAM_EXTERN int pam_sm_chauthtok(
+  pam_handle_t *pamh,
+  int flags,
+  int argc,
+  const char **argv
+);
+```
+
+> Quand une application appelle [`pam_chauthtok()`](#pam_chauthtok) (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_chauthtok()` (fonction exposée par le module) qui sera appelée.
+
+L'intérêt de cette fonction est double :
+
+1. Mettre en place des règles pour renforcer la sécurité d'un password
+
+  * Longueur minimale
+  
+
+  * Mélange de minuscule, majuscules, chiffres et caractères spéciaux
+
+  * Interdire des passwords trop faciles à deviner (ex: `123456`)
+  
+  * Lors des changements de password, interdire à l'utilisateur de se reservire d'un ancien password à lui
+  
+  * etc.
+
+2. Permettre à l'utilisateur de changer son password
+
+Paramètres :
+
+* `pamh`
+
+* `flags`
+
+  Champs de bits servant à activer le mode `PAM_SILENT`.
+
+  Ce champs de bits sert aussi à activer un seul des modes suivants à la fois : `PAM_CHANGE_EXPIRED_AUTHTOK`, `PAM_PRELIM_CHECK` ou `PAM_UPDATE_AUTHTOK` (cf. man).
+
+* `argc`
+
+* `argv`
+
+---
 
 ### [Service session](#service-session)
 
-TODO
+Les deux fonctions à implémenter sont les suivantes :
+
+* `pam_sm_open_session()`
+
+* `pam_sm_close_session()`
+
+Avant cela, il faut :
+
+1. Définir la macro `PAM_SM_SESSION`
+
+2. __Ensuite__ inclure `<security/pam_modules.h>`
+
+3. Enfin, implémenter les deux fonctions présentées ci-dessous.
+
+```c
+#define PAM_SM_SESSION
+#include <security/pam_modules.h>
+```
+
+---
+
+#### pam_sm_open_session()
+
+```c
+PAM_EXTERN int pam_sm_open_session(
+  pam_handle_t *pamh,
+  int flags,
+  int argc,
+  const char **argv
+);
+```
+
+> Quand une application appelle [`pam_open_session()`](#pam_open_session) (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_open_session()` (fonction exposée par le module) qui sera appelée.
+
+`pam_sm_open_session()` permet de préparer la session utilisateur. Quelques exemples :
+
+* Définir des variables d'environnement
+
+* Monter des partitions
+
+* etc.
+
+Paramètres :
+
+* `pamh`
+
+* `flags`
+
+  Champs de bits servant à activer le mode `PAM_SILENT`.
+
+* `argc`
+
+* `argv`
+
+---
+
+#### pam_sm_close_session()
+
+```c
+PAM_EXTERN int pam_sm_close_session(
+  pam_handle_t *pamh,
+  int flags,
+  int argc,
+  const char **argv
+);
+```
+
+> Quand une application appelle [`pam_close_session()`](#pam_close_session) (fonction exposée par l'API PAM), c'est cette fonction `pam_sm_close_session()` (fonction exposée par le module) qui sera appelée.
+
+`pam_sm_close_session()` permet de fermer la session utilisateur précédemment ouverte avec `pam_sm_open_session()`.
+
+---
 
 ### [Exemple de module](#exemple-de-module)
 
