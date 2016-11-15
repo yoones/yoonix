@@ -24,7 +24,7 @@ __Prérequis__ : connaitre la syntaxe SQL.
 
 Ce document sera accompagné d'un Live Coding (vidéo) et le code est disponible sur github.
 
-![Comme toujours, je vous invite fortement à lire la documentation officielle](http://messages.hellobits.com/warning.svg?message=Comme%20toujours%2C%20je%20vous%20invite%20fortement%20%C3%A0%20lire%20les%20man%20de%20chaque%20fonction%20avant%20de%20les%20utiliser)
+![Comme toujours, je vous invite fortement à lire la documentation officielle](http://messages.hellobits.com/warning.svg?message=Comme%20toujours%2C%20je%20vous%20invite%20fortement%20%C3%A0%20lire%20la%20documentation%20officielle)
 
 Sommaire
 ---
