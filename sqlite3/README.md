@@ -119,7 +119,7 @@ Paramètres :
   
   Notez que même en cas d'erreur à l'ouverture d'une base de données, `ppDb` sera définit et il faudra appeler `sqlite3_close()` pour le libérer.
   
-Si tout se passe bien, cette fonction renvoie `SQLITE_OK`. Dans le cas contraire, un code d'erreur est renvoyé et `sqlite3_errmsg()` peut être utilisé pour récupérer une description en anglais du problème (à la façon de `perror()`).
+Si tout se passe bien, cette fonction renvoie `SQLITE_OK`. Dans le cas contraire, un code d'erreur est renvoyé et `sqlite3_errmsg()` peut être utilisé pour récupérer une description en anglais du problème (à la façon de `strerror()`).
 
 > Si votre application est multi-tâches, regardez du côté de `sqlite3_open_v2()`.
 
