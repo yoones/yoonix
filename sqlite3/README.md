@@ -197,6 +197,8 @@ Cette fonction renvoie `SQLITE_OK` si tout s'est bien passé.
 
 Si cette fonction renvoie `SQLITE_ABORT`, c'est qu'un appel à la callback a renvoyé une valeur différente de zéro.
 
+__Important :__
+
 `sqlite3_exec()` est une fonction synchrone. Elle fera autant d'appels à `callback` que nécessaire __avant__ de renvoyer `SQLITE_OK` si tout s'est bien passé ou un code d'erreur dans le cas contraire.
 
 ---
@@ -244,7 +246,7 @@ Pour la requête suivante :
 select firstname,lastname from users WHERE role="member";
 ```
 
-`callback` sera appelé autant de fois que de tuples correspondants à ma requête seront trouvés. Chaque appel à `callback` me permettra de récupérer les infos suivantes :
+`callback` sera appelé autant de fois que de tuples correspondant à ma requête seront trouvés. Chaque appel à `callback` me permettra de récupérer les informations suivantes :
 
 * `argc` = 2
 * `argv[0]` = "... un prénom ..."
