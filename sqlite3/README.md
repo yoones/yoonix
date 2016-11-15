@@ -61,7 +61,135 @@ $ sudo apt-get install sqlite3
 
 ### [Démo](#démo)
 
-TODO
+On va commencer par lancer l'outil en ligne de commande et afficher l'aide grâce à la commande `.help` :
+
+```console
+$ sqlite3
+SQLite version 3.8.7.1 2014-10-29 13:59:56
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .help
+.backup ?DB? FILE      Backup DB (default "main") to FILE
+.bail on|off           Stop after hitting an error.  Default OFF
+.clone NEWDB           Clone data into NEWDB from the existing database
+.databases             List names and files of attached databases
+.dump ?TABLE? ...      Dump the database in an SQL text format
+                         If TABLE specified, only dump tables matching
+                         LIKE pattern TABLE.
+.echo on|off           Turn command echo on or off
+.eqp on|off            Enable or disable automatic EXPLAIN QUERY PLAN
+.exit                  Exit this program
+.explain ?on|off?      Turn output mode suitable for EXPLAIN on or off.
+                         With no args, it turns EXPLAIN on.
+.fullschema            Show schema and the content of sqlite_stat tables
+.headers on|off        Turn display of headers on or off
+.help                  Show this message
+.import FILE TABLE     Import data from FILE into TABLE
+.indices ?TABLE?       Show names of all indices
+                         If TABLE specified, only show indices for tables
+                         matching LIKE pattern TABLE.
+.load FILE ?ENTRY?     Load an extension library
+.log FILE|off          Turn logging on or off.  FILE can be stderr/stdout
+.mode MODE ?TABLE?     Set output mode where MODE is one of:
+                         csv      Comma-separated values
+                         column   Left-aligned columns.  (See .width)
+                         html     HTML <table> code
+                         insert   SQL insert statements for TABLE
+                         line     One value per line
+                         list     Values delimited by .separator string
+                         tabs     Tab-separated values
+                         tcl      TCL list elements
+.nullvalue STRING      Use STRING in place of NULL values
+.once FILENAME         Output for the next SQL command only to FILENAME
+.open ?FILENAME?       Close existing database and reopen FILENAME
+.output ?FILENAME?     Send output to FILENAME or stdout
+.print STRING...       Print literal STRING
+.prompt MAIN CONTINUE  Replace the standard prompts
+.quit                  Exit this program
+.read FILENAME         Execute SQL in FILENAME
+.restore ?DB? FILE     Restore content of DB (default "main") from FILE
+.save FILE             Write in-memory database into FILE
+.schema ?TABLE?        Show the CREATE statements
+                         If TABLE specified, only show tables matching
+                         LIKE pattern TABLE.
+.separator STRING ?NL? Change separator used by output mode and .import
+                         NL is the end-of-line mark for CSV
+.shell CMD ARGS...     Run CMD ARGS... in a system shell
+.show                  Show the current values for various settings
+.stats on|off          Turn stats on or off
+.system CMD ARGS...    Run CMD ARGS... in a system shell
+.tables ?TABLE?        List names of tables
+                         If TABLE specified, only list tables matching
+                         LIKE pattern TABLE.
+.timeout MS            Try opening locked tables for MS milliseconds
+.timer on|off          Turn SQL timer on or off
+.trace FILE|off        Output each SQL statement as it is run
+.vfsname ?AUX?         Print the name of the VFS stack
+.width NUM1 NUM2 ...   Set column widths for "column" mode
+                         Negative values right-justify
+```
+
+Première chose à distinguer : les requêtes SQL des commandes propres à sqlite3.
+
+* Quand on veut __exécuter une requête SQL__, il suffit de l'écrire et de terminer la requête par un `;`.
+
+* Quand on veut __exécuter une commande sqlite3__ (comme `.tables`), on n'oublie pas le `.` en début de commande. Ici, il ne faut pas mettre de `;` en fin de commande.
+
+Ouvrons maintenant une base de données et créons une table nommée `tasks` :
+
+```console
+sqlite> .open db.sqlite3
+sqlite> .tables
+sqlite> create table tasks (id integer primary key autoincrement, description text);
+sqlite> .tables
+tasks
+sqlite> .schema tasks
+CREATE TABLE tasks (id integer primary key autoincrement, description text);
+```
+
+C'est tout simple vu que c'est une requête SQL `create table ...`.
+
+Je me suis servi également des commandes suivantes :
+
+* `.open` : ouvre la base de données passée en paramètre
+
+* `.tables` : liste les tables existantes
+
+* `.schema` : un peu comme le `DESCRIBE` de MySQL, cette commande décrit une table (liste les champs, leurs types, ...)
+
+Maintenant qu'une table existe, on peut lui ajouter quelques tuples :
+
+```console
+sqlite> insert into tasks (description) values ("My very first task");
+sqlite> select * from tasks;
+1|My very first task
+sqlite> insert into tasks (description) values ("Another tasks");
+sqlite> select * from tasks;
+1|My very first task
+2|Another task
+sqlite> select * from tasks order by id desc
+   ...> ;
+2|Another task
+1|My very first task
+sqlite> .quit
+```
+
+Si on oublie le `;` à la fin de la ligne, sqlite3 considère que la requête n'est pas terminée et nous permet de continuer à l'écrire sur la ligne suivante.
+
+Pour conclure, on ouvre à nouveau la base de données que l'on vient de créer et de peupler pour s'assurer qu'elle contient toujours nos données :
+
+```console
+$ sqlite3 db.sqlite3
+SQLite version 3.8.7.1 2014-10-29 13:59:56
+Enter ".help" for usage hints.
+sqlite> .tables
+tasks
+sqlite> select * from tasks;
+1|My very first task
+2|Another task
+sqlite> .quit
+```
 
 ## libsqlite3
 
