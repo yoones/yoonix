@@ -33,7 +33,7 @@ Sommaire
 	- [Installation](#installation)
 	- [Démo](#démo)
 - [libsqlite3](#libsqlite3)
-	- [1. Dépendances](#1-dépendances)
+	- [1. Dépendance](#1-dépendance)
 	- [2. Linker options](#2-linker-options)
 	- [3. Headers](#3-headers)
 	- [4. Fonctions](#4-fonctions)
@@ -68,7 +68,7 @@ Nous avons deux paquets à installer. Je donne ici les noms des paquets sur debi
 
 ## libsqlite3
 
-### [1. Dépendances](#1-dépendances)
+### [1. Dépendance](#1-dépendance)
 
 Pour installer la bibliothèque sur debian :
 
