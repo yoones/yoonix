@@ -66,9 +66,9 @@ Sommaire
 
 ## Politiques d'authentification
 
-C'est l'administrateur système qui crée les politiques d'authentification, càd la succession d'étapes à valider (règles) pour considérer qu'un utilisateur est correctement authentifié ou non.
+C'est l'administrateur système qui crée les politiques d'authentification; la succession d'étapes à valider (règles) pour considérer qu'un utilisateur est correctement authentifié ou non.
 
-Pour reprendre l'exemple du programme `/bin/login`, ce n'est pas lui qui va lire sur l'entrée standard login et password, ouvrir les fichiers `/etc/passwd` et `/etc/shadow`, et comparer les informations lues avec le contenu de ces fichiers. Vu que c'est un programme PAM aware, il va faire appel à cette API en lui demandant d'appliquer la politique définie pour le service login, càd celle contenue dans le fichier `/etc/pam.d/login`, et il va laisser PAM s'occuper de ce qu'on appelle la transaction. PAM demandera les identifiants à l'utilisateur, les soumettra aux modules concernés en respectant les règles du service login, et donnera une réponse au programme `/bin/login` à l'issue de cette transaction pour lui dire si oui ou non il peut ouvrir un accès à cet utilisateur.
+Pour reprendre l'exemple du programme `/bin/login`, ce n'est pas lui qui va lire sur l'entrée standard login et password, ouvrir les fichiers `/etc/passwd` et `/etc/shadow`, et comparer les informations lues avec le contenu de ces fichiers. Vu que c'est un programme PAM aware, il va faire appel à cette API en lui demandant d'appliquer la politique définie pour le service login (celle contenue dans le fichier `/etc/pam.d/login`) et il va laisser PAM s'occuper de ce qu'on appelle la transaction. PAM demandera les identifiants à l'utilisateur, les soumettra aux modules concernés en respectant les règles du service login, et donnera une réponse au programme `/bin/login` à l'issue de cette transaction pour lui dire si oui ou non il peut ouvrir un accès à cet utilisateur.
 
 Ces services, ou politiques d'authentification, sont des fichiers de configuration textes définis dans `/etc/pam.d/`.
 
@@ -362,7 +362,7 @@ int pam_get_item(
 );
 ```
 
-Cette fonction permet de récupérer des informations PAM comme, par exemple, le nom d'utilisateur ou encore le nom du service invoqué. Ce sont des informations stockées dans le handle (la structure obscure dont on a parlé plus tôt). Les données renvoyées par `pam_get_item()` ne doivent pas être libérées avec `free()` ni modifiées (d'où le modifier `const`). Elle seront automatiquement libérées lors de l'appel à `pam_end()`.
+Cette fonction permet de récupérer des informations PAM comme, par exemple, le nom d'utilisateur ou encore le nom du service invoqué. Ce sont des informations stockées dans le handle (la structure obscure dont on a parlé plus tôt). Les données renvoyées par `pam_get_item()` ne doivent pas être libérées avec `free()` ni modifiées (d'où le modificateur `const`). Elle seront automatiquement libérées lors de l'appel à `pam_end()`.
 
 Paramètres :
 
