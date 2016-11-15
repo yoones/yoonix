@@ -63,9 +63,6 @@ $ sudo apt-get install sqlite3
 
 TODO
 
-Nous avons deux paquets à installer. Je donne ici les noms des paquets sur debian, je vous laisse trouver les équivalents si vous êtes sur une autre distribution.
-
-
 ## libsqlite3
 
 ### [1. Dépendance](#1-dépendance)
@@ -276,17 +273,29 @@ Ferme une base de données ouverte à l'aide de `sqlite3_open()`.
 
 ### [5. Exemple](#5-exemple)
 
-TODO
+Afin d'illustrer tout ça, vous pouvez suivre le lien ci-dessous pour voir un code très basique qui ouvre une base de données et affiche le contenu trouvé dans la table `tasks`.
 
 [Voir le code source sur github](https://github.com/yoones/yoonix/tree/master/sqlite3/exemple)
 
 ## [Exercice](#exercice)
 
-TODO
+Voici quelques petits exercices à faire pour vous aider à prendre cette bibliothèque en main :
+
+* Ecrire un gestionnaire de tâches
+
+  Difficluté : facile
+
+* Ecrire un gestionnaire de logs qui lit sur l'entrée standard des lignes de texte (format texte) et les enregistre dans une table `random_logs`. Ce programme doit pouvoir être lancé plusieurs fois en simultané sur la même database sans la corrompre.
+
+  Difficulté : moyenne
+
+Et comme toujours, faites bien attention à l'SQL Injection ;)
 
 ## [Ressources](#ressources)
 
 * https://www.sqlite.org/c3ref/funclist.html
+
+* Concernant l'accès concurenciel : http://www.sqlite.org/lockingv3.html
 
 ## [Auteur](#auteur)
 
