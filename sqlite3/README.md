@@ -183,7 +183,7 @@ Paramètres :
 
 * `sql`
 
-  Requête SQL à exécuter (n'oubliez pas le `;` à la fin des requêtes).
+  Requête SQL à exécuter.
 
 * `callback`
 
