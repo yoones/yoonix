@@ -14,6 +14,7 @@ Liste des sujets abordés :
 ---
 
 - [Linux-PAM - Pluggable Authentication Modules for Linux](https://github.com/yoones/yoonix/tree/master/linux-pam)
+- [SQLite3](https://github.com/yoones/yoonix/tree/master/sqlite3)
 
 _D'autres sont en cours de préparation._
 
