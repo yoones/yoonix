@@ -29,28 +29,29 @@ Ce document sera accompagné d'un Live Coding (vidéo) et le code est disponible
 Sommaire
 ---
 
-- [Installer sqlite3](#installer-sqlite3)
-- [Utiliser sqlite3](#utiliser-sqlite3)
-	- [En ligne de commande](#en-ligne-de-commande)
-	- [En C](#en-c)
-		- [Linker options](#linker-options)
-		- [Headers](#headers)
-		- [Fonctions](#fonctions)
-			- [sqlite3_open()](#sqlite3_open)
-			- [sqlite3_errmsg()](#sqlite3_errmsg)
-			- [sqlite3_free()](#sqlite3_free)
-			- [sqlite3_exec()](#sqlite3_exec)
-			- [sqlite3_exec() callback](#sqlite3_exec-callback)
-			- [sqlite3_close()](#sqlite3_close)
-		- [Exemple](#exemple)
+- [sqlite3 en ligne de commande](#sqlite3-en-ligne-de-commande)
+	- [Installation](#installation)
+	- [Démo](#démo)
+- [libsqlite3](#libsqlite3)
+	- [1. Dépendances](#1-dépendances)
+	- [2. Linker options](#2-linker-options)
+	- [3. Headers](#3-headers)
+	- [4. Fonctions](#4-fonctions)
+		- [sqlite3_open()](#sqlite3_open)
+		- [sqlite3_errmsg()](#sqlite3_errmsg)
+		- [sqlite3_free()](#sqlite3_free)
+		- [sqlite3_exec()](#sqlite3_exec)
+		- [sqlite3_exec() callback](#sqlite3_exec-callback)
+		- [sqlite3_close()](#sqlite3_close)
+	- [5. Exemple](#5-exemple)
 - [Exercice](#exercice)
 - [Ressources](#ressources)
 - [Auteur](#auteur)
 - [Licence](#licence-)
 
-## Installer sqlite3
+## sqlite3 en ligne de commande
 
-Nous avons deux paquets à installer. Je donne ici les noms des paquets sur debian, je vous laisse trouver les équivalents si vous êtes sur une autre distribution.
+### [Installation](#installation)
 
 Pour utiliser l'outil en ligne de commande :
 
@@ -58,21 +59,26 @@ Pour utiliser l'outil en ligne de commande :
 $ sudo apt-get install sqlite3
 ```
 
-Pour installer la bibliothèque (pour coder) :
+### [Démo](#démo)
+
+TODO
+
+Nous avons deux paquets à installer. Je donne ici les noms des paquets sur debian, je vous laisse trouver les équivalents si vous êtes sur une autre distribution.
+
+
+## libsqlite3
+
+### [1. Dépendances](#1-dépendances)
+
+Pour installer la bibliothèque sur debian :
 
 ```console
 $ sudo apt-get install libsqlite3-dev
 ```
 
-## Utiliser sqlite3
+_Je vous laisse trouver l'équivalent si vous êtes sur une autre distribution._
 
-### En ligne de commande
-
-TODO
-
-### En C
-
-#### [Linker options](#2-linker-options)
+### [2. Linker options](#2-linker-options)
 
 Pour compiler un programme qui utilise sqlite3, il faut ajouter à la ligne de compilation l'option suivante : `-lsqlite3`.
 
@@ -80,7 +86,7 @@ Pour compiler un programme qui utilise sqlite3, il faut ajouter à la ligne de c
 $ gcc *.c -lsqlite3
 ```
 
-#### [Header](#3-headers)
+### [3. Header](#3-headers)
 
 On retrouvera au début de nos fichiers .c le header suivant :
 
@@ -88,7 +94,7 @@ On retrouvera au début de nos fichiers .c le header suivant :
 #include <sqlite3.h>
 ```
 
-#### [Fonctions](#4-fonctions)
+### [4. Fonctions](#4-fonctions)
 
 Si vous souhaitez avoir une liste complète des fonctions disponibles :
 
@@ -96,7 +102,7 @@ https://www.sqlite.org/c3ref/funclist.html
 
 ---
 
-##### sqlite3_open()
+#### sqlite3_open()
 
 ```c
 int sqlite3_open(
@@ -125,7 +131,7 @@ Si tout se passe bien, cette fonction renvoie `SQLITE_OK`. Dans le cas contraire
 
 ---
 
-##### sqlite3_errmsg()
+#### sqlite3_errmsg()
 
 ```c
 const char *sqlite3_errmsg(
@@ -137,7 +143,7 @@ Cette fonction renvoie une chaine de caractères (constante) qui décrit (en ang
 
 ---
 
-##### sqlite3_free
+#### sqlite3_free
 
 ```c
 void sqlite3_free(
@@ -155,7 +161,7 @@ Paramètres :
 
 ---
 
-##### sqlite3_exec()
+#### sqlite3_exec()
 
 ```c
 int sqlite3_exec(
@@ -203,7 +209,7 @@ __Important :__
 
 ---
 
-##### sqlite3_exec() callback
+#### sqlite3_exec() callback
 
 ```c
 int callback(
@@ -256,7 +262,7 @@ select firstname,lastname from users WHERE role="member";
 
 ---
 
-##### sqlite3_close
+#### sqlite3_close
 
 ```c
 int sqlite3_close(
@@ -268,7 +274,7 @@ Ferme une base de données ouverte à l'aide de `sqlite3_open()`.
 
 ---
 
-#### [Exemple](#exemple-de-module)
+### [5. Exemple](#5-exemple)
 
 TODO
 
