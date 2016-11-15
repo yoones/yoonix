@@ -411,7 +411,7 @@ Voici quelques petits exercices à faire pour vous aider à prendre cette biblio
 
 * Ecrire un gestionnaire de tâches
 
-  Difficluté : facile
+  Difficulté : facile
 
 * Ecrire un gestionnaire de logs qui lit sur l'entrée standard des lignes de texte (format texte) et les enregistre dans une table `random_logs`. Ce programme doit pouvoir être lancé plusieurs fois en simultané sur la même database sans la corrompre.
 
