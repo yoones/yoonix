@@ -134,9 +134,9 @@ Première chose à distinguer : les requêtes SQL des commandes propres à sqlit
 
 * Quand on veut __exécuter une requête SQL__, il suffit de l'écrire et de terminer la requête par un `;`.
 
-* Quand on veut __exécuter une commande sqlite3__ (comme `.tables`), on n'oublie pas le `.` en début de commande. Ici, il ne faut pas mettre de `;` en fin de commande.
+* Quand on veut __exécuter une commande sqlite3__ (comme `.tables`), on n'oublie pas le `.` en début de commande et on ne mets pas de `;` en fin de commande.
 
-Ouvrons maintenant une base de données et créons une table nommée `tasks` :
+Ouvrons maintenant une base de données `db.sqlite3` et créons une table nommée `tasks` :
 
 ```console
 sqlite> .open db.sqlite3
